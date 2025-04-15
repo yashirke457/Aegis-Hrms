@@ -26,10 +26,10 @@ public class LoginLogout {
         String uniqueProfile = "/tmp/chrome_profile_" + UUID.randomUUID();
         options.addArguments("--user-data-dir=" + uniqueProfile);
 
-//        // Recommended for CI environments
-//        options.addArguments("--no-sandbox");
-//        options.addArguments("--disable-dev-shm-usage");
-//        options.addArguments("--headless"); // Optional: only if you don�t need browser UI
+        // Recommended for CI environments
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--headless"); // Optional: only if you don�t need browser UI
 
         driver = new ChromeDriver(options);
 //        driver = new ChromeDriver();
