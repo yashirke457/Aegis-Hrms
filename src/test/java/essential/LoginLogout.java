@@ -21,7 +21,6 @@ public class LoginLogout {
     public void setup() {
     	
     	ChromeOptions options = new ChromeOptions();
-
         // Generate a unique temp user-data-dir to avoid session conflict
         String uniqueProfile = "/tmp/chrome_profile_" + UUID.randomUUID();
         options.addArguments("--user-data-dir=" + uniqueProfile);
