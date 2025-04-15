@@ -12,6 +12,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - '!**.yml'
   workflow_dispatch:  # manual trigger
 
 jobs:
@@ -28,8 +30,13 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Set up Chrome
-        uses: browser-actions/setup-chrome@v1
+      - name: Print Chrome version
+        run: google-chrome --version
 
-      - name: Run Selected Selenium Test
-        run: mvn test -Dtest=essential.LoginLogout,essential.CreateOrgSetup
+      - name: Run Selected Selenium Tests in headless mode
+        env:
+          GITHUB_ACTIONS: true
+        run: |
+          echo "Running tests headlessly"
+          CHROME_ARGS="--headless=new --no-sandbox --disable-dev-shm-usage"
+          mvn test -Dtest=essential.LoginLogout,essential.CreateOrgSetup
