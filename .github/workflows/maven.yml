@@ -32,4 +32,4 @@ jobs:
         uses: browser-actions/setup-chrome@v1
 
       - name: Run Selected Selenium Test
-        run: mvn test -Dtest=essential.LoginLogout
+        run: mvn test -Dtest=essential.LoginLogout,essential.CreateOrgSetup
