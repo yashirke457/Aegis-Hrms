@@ -61,8 +61,10 @@ public class LoginLogout {
         System.out.println("Employee Logout done successfully");
     }
 
-    private void login(String email, String password) throws InterruptedException {
-        driver.findElement(By.name("email")).sendKeys(email);
+    private void login(String email, String password) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        driver.get("https://app.aegishrms.com/sign-in"); // ensure correct page
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("email"))).sendKeys(email);
         driver.findElement(By.name("password")).sendKeys(password);
         driver.findElement(By.xpath("//button[text()='Login']")).click();
     }
