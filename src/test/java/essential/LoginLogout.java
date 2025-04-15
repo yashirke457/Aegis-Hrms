@@ -1,12 +1,8 @@
 package essential;
 
 import java.time.Duration;
-import java.util.UUID;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
@@ -20,17 +16,7 @@ public class LoginLogout {
     @BeforeClass
     public void setup() {
     	
-    	ChromeOptions options = new ChromeOptions();
-        // Generate a unique temp user-data-dir to avoid session conflict
-        String uniqueProfile = "/tmp/chrome_profile_" + UUID.randomUUID();
-        options.addArguments("--user-data-dir=" + uniqueProfile);
-
-        // Recommended for CI environments
-        options.addArguments("--no-sandbox");
-        options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--headless"); // Optional: only if you don�t need browser UI
-
-        driver = new ChromeDriver(options);
+        driver = BaseDriverSetup.getDriver();
 //        driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));

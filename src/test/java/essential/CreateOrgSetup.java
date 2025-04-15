@@ -5,8 +5,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -18,19 +16,7 @@ public class CreateOrgSetup {
     @BeforeClass
     public void setup() {
     	
-    	ChromeOptions options = new ChromeOptions();
-
-    	if (System.getenv("GITHUB_ACTIONS") != null) {
-			// Recommended for CI environments
-			options.addArguments("--no-sandbox");
-			options.addArguments("--disable-dev-shm-usage");
-			options.addArguments("--headless"); // Optional: only if you don�t need browser UI
-			
-			// Add unique user-data-dir to avoid conflicts
-	        options.addArguments("--user-data-dir=/tmp/profile-" + System.currentTimeMillis());
-		}
-    	
-        driver = new ChromeDriver();
+        driver = BaseDriverSetup.getDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         new WebDriverWait(driver, Duration.ofSeconds(20));
