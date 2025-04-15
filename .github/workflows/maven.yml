@@ -12,9 +12,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - '!**.yml'
-      - '**.java'
   workflow_dispatch:  # manual trigger
 
 jobs:
