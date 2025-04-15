@@ -7,6 +7,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -17,7 +19,6 @@ public class LoginLogout {
 
     @BeforeClass
     public void setup() {
-    	// testing git commit visibility
     	
     	ChromeOptions options = new ChromeOptions();
 
@@ -25,10 +26,10 @@ public class LoginLogout {
         String uniqueProfile = "/tmp/chrome_profile_" + UUID.randomUUID();
         options.addArguments("--user-data-dir=" + uniqueProfile);
 
-        // Recommended for CI environments
-        options.addArguments("--no-sandbox");
-        options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--headless"); // Optional: only if you don’t need browser UI
+//        // Recommended for CI environments
+//        options.addArguments("--no-sandbox");
+//        options.addArguments("--disable-dev-shm-usage");
+//        options.addArguments("--headless"); // Optional: only if you donï¿½t need browser UI
 
         driver = new ChromeDriver(options);
 //        driver = new ChromeDriver();
@@ -68,10 +69,11 @@ public class LoginLogout {
     }
 
     private void logout() throws InterruptedException {
+    	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         Thread.sleep(3000);
         driver.findElement(By.id("basic-button")).click();
-        Thread.sleep(2000);
-        driver.findElement(By.xpath("//div[text()=' Log out']")).click();
+        By logoutBtn = By.xpath("//div[normalize-space(text())='Log out']");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(logoutBtn)).click();
     }
 
     @AfterClass
