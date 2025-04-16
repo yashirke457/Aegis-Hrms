@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-public class BaseDriverSetup {
+public class BaseDriverSetup{
 	
 	public static WebDriver getDriver() {
         ChromeOptions options = new ChromeOptions();
