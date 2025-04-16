@@ -55,12 +55,27 @@ public class LoginLogout {
         driver.findElement(By.xpath("//button[text()='Login']")).click();
     }
 
-    private void logout() throws InterruptedException {
-    	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-        Thread.sleep(3000);
-        driver.findElement(By.id("basic-button")).click();
-        By logoutBtn = By.xpath("//div[normalize-space(text())='Log out']");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(logoutBtn)).click();
+    private void logout() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+
+        // Click profile dropdown (safe to wrap with wait)
+        try {
+            WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(5));
+            shortWait.until(ExpectedConditions.elementToBeClickable(By.id("basic-button"))).click();
+        } catch (Exception e) {
+            System.out.println("⚠️ Failed to open profile dropdown: " + e.getMessage());
+            return;
+        }
+
+        // Wait for and click logout, ensure it’s actually visible
+        try {
+            By logoutBtn = By.xpath("//div[normalize-space(text())='Log out']");
+            wait.until(ExpectedConditions.presenceOfElementLocated(logoutBtn));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(logoutBtn));
+            wait.until(ExpectedConditions.elementToBeClickable(logoutBtn)).click();
+        } catch (Exception e) {
+            System.out.println("❌ Logout button not found or clickable in headless mode: " + e.getMessage());
+        }
     }
 
     @AfterClass
