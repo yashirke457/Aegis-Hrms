@@ -102,6 +102,7 @@ public class LoginLogout {
 		driver.findElement(By.id("password")).sendKeys("Pass@123");
 	    WebElement button = driver.findElement(By.xpath("//button[text()='Login']"));
 	    button.click();
+	    System.out.println("Login done successful");
 	}
 	
 	@Test(priority = 2)
@@ -111,6 +112,7 @@ public class LoginLogout {
 		driver.findElement(By.cssSelector("div[class='MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault css-1llrwy8']")).click();
 		Thread.sleep(2000);
 		driver.findElement(By.xpath("/html/body/div[3]/div[3]/ul/div/li[2]")).click();
+		System.out.println("Logout done successful");
 		driver.quit();
 	}
 	
