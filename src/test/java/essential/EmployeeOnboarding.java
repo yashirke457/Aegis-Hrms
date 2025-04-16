@@ -6,7 +6,6 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -17,7 +16,7 @@ public class EmployeeOnboarding {
 
     @BeforeClass
     public void setup() {
-        driver = new ChromeDriver();
+        driver = BaseDriverSetup.getDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driver.get("https://app.aegishrms.com");
@@ -134,22 +133,6 @@ public class EmployeeOnboarding {
     }
 
     private void logout() throws InterruptedException {
-    	// Deletes Onboarded employee
-    	try {
-        	driver.findElement(By.xpath("//button[@aria-label='open drawer']")).click();
-            Thread.sleep(2000);
-            driver.findElement(By.xpath("//h1[text()='Employee']")).click();
-            driver.findElement(By.linkText("Employee list")).click();
-        	driver.findElement(By.xpath("//input[@placeholder='Search Employee']")).sendKeys("Manager" + Keys.ENTER);
-            Thread.sleep(2000);
-        	driver.findElement(By.xpath("//*[local-name()='svg' and @data-testid='DeleteOutlineIcon']")).click();
-            Thread.sleep(2000);
-            driver.findElement(By.xpath("//button[text()='Delete']")).click();
-            Thread.sleep(3000);
-            System.out.println("Employee deleted successfully");
-		} catch (Exception e) {
-				e.printStackTrace();
-		}
     	
         driver.findElement(By.id("basic-button")).click();
         driver.findElement(By.xpath("//div[text()=' Log out']")).click();
