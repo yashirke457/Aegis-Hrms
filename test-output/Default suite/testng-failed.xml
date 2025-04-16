@@ -3,14 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="essential.LoginLogout">
+      <class name="essential.CreateOrgSetup">
         <methods>
-          <include name="adminLoginLogout"/>
-          <include name="setup"/>
-          <include name="employeeLoginLogout"/>
           <include name="teardown"/>
+          <include name="setup"/>
+          <include name="manageOrganization"/>
         </methods>
-      </class> <!-- essential.LoginLogout -->
+      </class> <!-- essential.CreateOrgSetup -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

@@ -13,6 +13,7 @@ public class BaseDriverSetup {
 
         // Detect if running in GitHub Actions
         if (System.getenv("GITHUB_ACTIONS") != null) {
+        	options.addArguments("--window-size=1920,1080");
             options.addArguments("--headless=new");
             options.addArguments("--no-sandbox");
             options.addArguments("--disable-dev-shm-usage");
