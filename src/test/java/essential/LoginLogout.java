@@ -94,7 +94,7 @@ public class LoginLogout {
 	@Test(priority = 1)
 	public void userLogin() throws InterruptedException
 	{
-		driver= new ChromeDriver();   
+		driver= BaseDriverSetup.getDriver();   
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		driver.get("https://qa.aegishrms.com/");
