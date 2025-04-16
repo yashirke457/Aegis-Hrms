@@ -19,7 +19,7 @@ public class LoginLogout {
         driver = BaseDriverSetup.getDriver();
 //        driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(25));
         driver.get("https://app.aegishrms.com/sign-in");
         System.out.println("=========================================================");
         System.out.println("LOGIN AND LOGOUT");
@@ -48,7 +48,7 @@ public class LoginLogout {
     }
 
     private void login(String email, String password) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         driver.get("https://app.aegishrms.com/sign-in"); // ensure correct page
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("email"))).sendKeys(email);
         driver.findElement(By.name("password")).sendKeys(password);
@@ -56,7 +56,7 @@ public class LoginLogout {
     }
 
     private void logout() throws InterruptedException {
-    	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         Thread.sleep(3000);
         driver.findElement(By.id("basic-button")).click();
         By logoutBtn = By.xpath("//div[normalize-space(text())='Log out']");

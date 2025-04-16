@@ -33,6 +33,8 @@ public class CreateOrgSetup {
         logout();
     }
 
+
+
     private void login() throws InterruptedException {
         driver.get("https://app.aegishrms.com/sign-in");
 
@@ -97,9 +99,6 @@ public class CreateOrgSetup {
         addLeave("Study leave", "5");
         System.out.println("Added Leaves data successfully");
 
-//        // Adding shifts
-//        addShift("office","General Shift", "09:00:AM", "06:00:PM", new String[]{"Mon", "Tue", "Wed", "Thur", "Fri", "Sat"});
-//        System.out.println("Added Shifts data successfully");
 
         // Adding location
         addLocation(driver, "asia", "united arab", "dubai", "Dubai", "325412", "Abu dhabi", "UAE");
@@ -117,12 +116,7 @@ public class CreateOrgSetup {
         System.out.println("Added Salary Template successfully");
         
         //Pf  and esic calculation
-        driver.findElement(By.xpath("//h1[text()='PF & ESIC Norms Calculation']")).click();
-        driver.findElement(By.name("EPF")).sendKeys("12");
-        driver.findElement(By.name("EPS")).sendKeys("12");
-        driver.findElement(By.name("ECP")).sendKeys("0.75");
-        driver.findElement(By.name("ECS")).sendKeys("3.25");
-        driver.findElement(By.xpath("//button[text()='submit']")).click();
+        pfandesic("12","12","0.75","3.25");
         System.out.println("PF and ESIC setup added successfully");
         
     }
@@ -184,6 +178,14 @@ public class CreateOrgSetup {
         driver.findElement(By.xpath("//button[text()='submit']")).click();
     }
 
+    public void pfandesic(String epf, String eps, String ecp, String ecs) {
+    	driver.findElement(By.xpath("//h1[text()='PF & ESIC Norms Calculation']")).click();
+        driver.findElement(By.name("EPF")).sendKeys(epf);
+        driver.findElement(By.name("EPS")).sendKeys(eps);
+        driver.findElement(By.name("ECP")).sendKeys(ecp);
+        driver.findElement(By.name("ECS")).sendKeys(ecs);
+        driver.findElement(By.xpath("//button[text()='submit']")).click();
+    }
 
     private void selectIndustry(String industry) throws InterruptedException {
         WebElement industryInput = driver.findElement(By.id("react-select-3-input"));
