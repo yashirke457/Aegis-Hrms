@@ -2,24 +2,24 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-04-18T15:42:19 IST" name="Default suite" finished-at="2025-04-18T15:44:30 IST" duration-ms="130679">
+  <suite started-at="2025-04-18T18:03:11 IST" name="Default suite" finished-at="2025-04-18T18:04:51 IST" duration-ms="100264">
     <groups>
     </groups>
-    <test started-at="2025-04-18T15:42:19 IST" name="Default test" finished-at="2025-04-18T15:44:30 IST" duration-ms="130679">
-      <class name="enterprise.ExpenseManagement">
-        <test-method is-config="true" signature="setup()[pri:0, instance:enterprise.ExpenseManagement@6fff253c]" started-at="2025-04-18T15:42:19 IST" name="setup" finished-at="2025-04-18T15:42:22 IST" duration-ms="2202" status="PASS">
+    <test started-at="2025-04-18T18:03:11 IST" name="Default test" finished-at="2025-04-18T18:04:51 IST" duration-ms="100264">
+      <class name="enterprise.ExpenseWorkflow">
+        <test-method is-config="true" signature="setup()[pri:0, instance:enterprise.ExpenseWorkflow@591e58fa]" started-at="2025-04-18T18:03:11 IST" name="setup" finished-at="2025-04-18T18:03:52 IST" duration-ms="41429" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="completeExpenseManagementFlow()[pri:0, instance:enterprise.ExpenseManagement@6fff253c]" started-at="2025-04-18T15:42:22 IST" name="completeExpenseManagementFlow" finished-at="2025-04-18T15:44:30 IST" duration-ms="128242" status="PASS">
+        <test-method signature="expenseworkflow()[pri:0, instance:enterprise.ExpenseWorkflow@591e58fa]" started-at="2025-04-18T18:03:52 IST" name="expenseworkflow" finished-at="2025-04-18T18:04:48 IST" duration-ms="55417" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- completeExpenseManagementFlow -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:enterprise.ExpenseManagement@6fff253c]" started-at="2025-04-18T15:44:30 IST" name="tearDown" finished-at="2025-04-18T15:44:30 IST" duration-ms="166" status="PASS">
+        </test-method> <!-- expenseworkflow -->
+        <test-method is-config="true" signature="teardown()[pri:0, instance:enterprise.ExpenseWorkflow@591e58fa]" started-at="2025-04-18T18:04:48 IST" name="teardown" finished-at="2025-04-18T18:04:51 IST" duration-ms="3339" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- tearDown -->
-      </class> <!-- enterprise.ExpenseManagement -->
+        </test-method> <!-- teardown -->
+      </class> <!-- enterprise.ExpenseWorkflow -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

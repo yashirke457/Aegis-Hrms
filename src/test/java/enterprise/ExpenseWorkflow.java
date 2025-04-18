@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 
 import essential.BaseDriverSetup;
 
-public class ExpenseManagement {
+public class ExpenseWorkflow {
 	
 	private WebDriver driver;
 
