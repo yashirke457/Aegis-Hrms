@@ -25,7 +25,7 @@ public class ExpenseManagement {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(25));
         driver.get("https://qa.aegishrms.com/sign-in");
         System.out.println("=========================================================");
-        System.out.println("▶️ EXPENSE MANAGEMENT WORKFLOW");
+        System.out.println("▶️ EXPENSE MANAGEMENT WORKFLOWGIT ");
     }
     
     @Test
@@ -133,8 +133,10 @@ public class ExpenseManagement {
         driver.findElement(By.xpath("//button[text()='Login']")).click();
     }
     
-    private void logout() {
+    private void logout() throws InterruptedException {
+    	Thread.sleep(2000);
     	driver.findElement(By.id("basic-button")).click();
+    	Thread.sleep(2000);
         driver.findElement(By.xpath("//div[text()=' Log out']")).click();
     }
     
