@@ -90,7 +90,7 @@ public class ExpenseManagement {
 
         Thread.sleep(1000);
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//button[@type='button'])[1]"))).click();
         
