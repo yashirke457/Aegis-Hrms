@@ -25,7 +25,7 @@ public class ExpenseManagement {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(25));
         driver.get("https://qa.aegishrms.com/sign-in");
         System.out.println("=========================================================");
-        System.out.println("▶️ Expense management workflow");
+        System.out.println("▶️ EXPENSE MANAGEMENT WORKFLOW");
     }
     
     @Test
@@ -82,7 +82,7 @@ public class ExpenseManagement {
     }
     
     public void managerApproval() throws InterruptedException {
-    	System.out.println("Manager logout");
+    	System.out.println("Manager login");
     	Thread.sleep(2000);
     	driver.findElement(By.xpath("//button[@aria-label='open drawer']")).click();
         Thread.sleep(1000);
