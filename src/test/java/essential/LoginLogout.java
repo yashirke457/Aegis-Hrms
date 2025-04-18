@@ -20,7 +20,7 @@ public class LoginLogout {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(25));
         driver.get("https://app.aegishrms.com/sign-in");
         System.out.println("=========================================================");
-        System.out.println("LOGIN AND LOGOUT");
+        System.out.println("▶️ LOGIN AND LOGOUT");
     }
 
     @Test

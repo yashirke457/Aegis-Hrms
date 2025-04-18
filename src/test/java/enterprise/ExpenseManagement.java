@@ -90,7 +90,7 @@ public class ExpenseManagement {
         driver.findElement(By.xpath("(//*[local-name()='svg' and @data-testid='NotificationsIcon'])")).click();
         
         try {
-            WebElement expenseTab = driver.findElement(By.xpath("//span[text()='Expense Management']"));
+            WebElement expenseTab = clickExpenseManagementTabWithRetry();
             if (expenseTab.isDisplayed()) {
                 expenseTab.click();
                 System.out.println("✅ 'Expense Management' tab clicked directly.");
@@ -159,6 +159,38 @@ public class ExpenseManagement {
         driver.findElement(By.id("password")).sendKeys(password);
         driver.findElement(By.xpath("//button[text()='Login']")).click();
     }
+    
+    public WebElement clickExpenseManagementTabWithRetry() throws InterruptedException {
+        int maxTries = 5;
+
+        for (int i = 0; i < maxTries; i++) {
+            try {
+                WebElement tab = driver.findElement(By.xpath("//span[text()='Expense Management']"));
+                if (tab.isDisplayed()) {
+                    tab.click();
+                    System.out.println("✅ 'Expense Management' tab clicked.");
+                    return tab;
+                }
+            } catch (NoSuchElementException | ElementNotInteractableException e) {
+                // Tab not visible yet, try clicking arrow
+                try {
+                    WebElement arrow = driver.findElement(By.xpath("//*[local-name()='svg' and @data-testid='KeyboardArrowRightIcon']"));
+                    if (arrow.isDisplayed()) {
+                        arrow.click();
+                        Thread.sleep(500); // wait for tabs to scroll
+                        System.out.println("↪️ Clicked right arrow to reveal more tabs.");
+                    }
+                } catch (NoSuchElementException ex) {
+                    System.out.println("❌ Arrow button not found or not visible.");
+                    break;
+                }
+            }
+        }
+
+        throw new NoSuchElementException("❌ 'Expense Management' tab not found even after scrolling.");
+    }
+
+
 
     @AfterClass
     public void tearDown() {
