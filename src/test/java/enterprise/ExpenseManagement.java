@@ -87,45 +87,6 @@ public class ExpenseManagement {
         login("manager1@gmail.com", "Pass@123");
 
         Thread.sleep(1000);
-        driver.findElement(By.xpath("(//*[local-name()='svg' and @data-testid='NotificationsIcon'])")).click();
-        WebElement tab = driver.findElement(By.xpath("//span[text()='Expense Management']"));
-        tab.click();
-        
-//        try {
-//            WebElement expenseTab = clickExpenseManagementTabWithRetry();
-//            if (expenseTab.isDisplayed()) {
-//                expenseTab.click();
-//                System.out.println("✅ 'Expense Management' tab clicked directly.");
-//            }
-//        } catch (NoSuchElementException | ElementNotInteractableException e) {
-//            System.out.println("🔍 'Expense Management' tab not immediately visible, clicking arrow...");
-//
-//            try {
-//                WebElement arrowButton = driver.findElement(By.xpath("//*[local-name()='svg' and @data-testid='KeyboardArrowRightIcon']"));
-//                if (arrowButton.isDisplayed()) {
-//                    arrowButton.click();
-//                    Thread.sleep(500); // Wait for scroll animation
-//                }
-//            } catch (NoSuchElementException ex) {
-//                System.out.println("❌ Arrow button not found. Cannot scroll to reveal the tab.");
-//            }
-//
-//            // Retry finding and clicking the tab after scrolling
-//            try {
-//                WebElement expenseTab = driver.findElement(By.xpath("//span[text()='Expense Management']"));
-//                if (expenseTab.isDisplayed()) {
-//                    expenseTab.click();
-//                    System.out.println("✅ 'Expense Management' tab found after scrolling and clicked.");
-//                }
-//            } catch (NoSuchElementException | ElementNotInteractableException ex) {
-//                System.out.println("❌ 'Expense Management' tab still not visible after scrolling.");
-//                throw new NoSuchElementException("'Expense Management' tab not found after scrolling.");
-//            }
-//        }
-//        
-
-        driver.findElement(By.xpath("(//div[@class='flex items-center gap-3'])[1]")).click();
-
         driver.findElement(By.xpath("(//button[@type='button'])[1]")).click();
         driver.findElement(By.xpath("(//h1[text()='Expense Management'])[1]")).click();
         driver.findElement(By.xpath("(//h1[text()='Expense Dashboard'])[1]")).click();
