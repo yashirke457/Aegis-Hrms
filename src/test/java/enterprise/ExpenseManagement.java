@@ -105,6 +105,7 @@ public class ExpenseManagement {
     
     public void superAdminApproval() throws InterruptedException {
     	System.out.println("Super admin login");
+    	Thread.sleep(2000);
     	driver.findElement(By.linkText("Go To Organisation")).click();
         driver.findElement(By.xpath("(//button[text()='Setup'])[1]")).click();
         driver.findElement(By.xpath("//button[@aria-label='open drawer']")).click();
