@@ -97,7 +97,7 @@ public class ExpenseManagement {
 //      wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//h1[text()='Expense Management'])[1]"))).click();
         WebElement header = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h1[text()='Expense Management']")));
         wait.until(ExpectedConditions.visibilityOf(header));
-        wait.until(ExpectedConditions.elementToBeClickable(header));
+        wait.until(ExpectedConditions.elementToBeClickable(header)).click();
         
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//h1[text()='Expense Dashboard'])[1]"))).click();
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[text()='View Approvals']"))).click();
