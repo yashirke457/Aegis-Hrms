@@ -6,8 +6,9 @@ import java.awt.event.KeyEvent;
 import java.time.Duration;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
+
+import essential.BaseDriverSetup;
 
 public class ExpenseManagement {
 
@@ -15,7 +16,7 @@ public class ExpenseManagement {
 
     @BeforeClass
     public void setup() {
-        driver = new ChromeDriver();
+        driver = BaseDriverSetup.getDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
