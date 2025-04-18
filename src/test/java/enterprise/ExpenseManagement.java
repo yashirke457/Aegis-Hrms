@@ -39,6 +39,7 @@ public class ExpenseManagement {
     }
     
     public void createExpense() throws InterruptedException {
+    	System.out.println("Super admin login");
     	Thread.sleep(2000);
     	driver.findElement(By.linkText("Go To Organisation")).click();
         driver.findElement(By.xpath("(//button[text()='Setup'])[1]")).click();
@@ -74,11 +75,14 @@ public class ExpenseManagement {
         driver.findElement(By.xpath("//button[text()='Add Expense to Report']")).click();
         driver.findElement(By.xpath("//button[text()='Submit Report']")).click();
         Thread.sleep(2000);
+        System.out.println("Expense created and submitted successfully");
         logout();
+        System.out.println("Super admin logout");
         
     }
     
     public void managerApproval() throws InterruptedException {
+    	System.out.println("Manager logout");
     	Thread.sleep(2000);
     	driver.findElement(By.xpath("//button[@aria-label='open drawer']")).click();
         Thread.sleep(1000);
@@ -93,11 +97,14 @@ public class ExpenseManagement {
         driver.findElement(By.xpath("//textarea[@placeholder='Enter reason...']")).sendKeys("Manager approval");
         driver.findElement(By.xpath("//button[text()='Submit']")).click();
         Thread.sleep(2000);
+        System.out.println("First approval done- Manager approval");
         logout();
+        System.out.println("Manager logout");
     	
     }
     
     public void superAdminApproval() throws InterruptedException {
+    	System.out.println("Super admin login");
     	driver.findElement(By.linkText("Go To Organisation")).click();
         driver.findElement(By.xpath("(//button[text()='Setup'])[1]")).click();
         driver.findElement(By.xpath("//button[@aria-label='open drawer']")).click();
@@ -114,8 +121,9 @@ public class ExpenseManagement {
         driver.findElement(By.xpath("//textarea[@placeholder='Enter reason...']")).sendKeys("Super admin approval");
         driver.findElement(By.xpath("//button[text()='Submit']")).click();
         Thread.sleep(2000);
+        System.out.println("Final approval done- Super admin approval");
         logout();
-    	
+        System.out.println("Super admin logout");
     }
     
     private void login(String email, String password) throws InterruptedException {
