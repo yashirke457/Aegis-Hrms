@@ -1,8 +1,8 @@
 package enterprise;
 
 import java.awt.AWTException;
-import java.awt.Robot;
-import java.awt.event.KeyEvent;
+//import java.awt.Robot;
+//import java.awt.event.KeyEvent;
 import java.time.Duration;
 
 import org.openqa.selenium.*;
@@ -70,18 +70,12 @@ public class ExpenseManagement {
 
         driver.findElement(By.name("amount")).sendKeys("1000");
         WebElement region = driver.findElement(By.name("region"));
-        region.sendKeys("Dubai");
         region.click();
+        region.sendKeys("Dubai");
+        region.sendKeys(Keys.TAB+""+Keys.TAB+"Lorem Ipsum");
 
         Thread.sleep(1000);
 
-        Robot robot = new Robot();
-        robot.keyPress(KeyEvent.VK_TAB);
-        robot.keyRelease(KeyEvent.VK_TAB);
-        robot.keyPress(KeyEvent.VK_TAB);
-        robot.keyRelease(KeyEvent.VK_TAB);
-
-        driver.findElement(By.cssSelector("input[placeholder='Enter expense description']")).sendKeys("Sample expense description");
         driver.findElement(By.xpath("//button[text()='Add Expense to Report']")).click();
         driver.findElement(By.xpath("//button[text()='Submit Report']")).click();
         Thread.sleep(1000);
@@ -95,7 +89,7 @@ public class ExpenseManagement {
 
         Thread.sleep(1000);
         driver.findElement(By.xpath("(//*[local-name()='svg' and @data-testid='NotificationsIcon'])")).click();
-        driver.findElement(By.xpath("(//*[local-name()='svg' and @data-testid='KeyboardArrowRightIcon'])")).click();
+//        driver.findElement(By.xpath("(//*[local-name()='svg' and @data-testid='KeyboardArrowRightIcon'])")).click();
         driver.findElement(By.xpath("//span[text()='Expense Management']")).click();
         driver.findElement(By.xpath("(//div[@class='flex items-center gap-3'])[1]")).click();
 
