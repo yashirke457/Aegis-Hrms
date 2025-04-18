@@ -5,6 +5,8 @@ import java.awt.AWTException;
 //import java.awt.event.KeyEvent;
 import java.time.Duration;
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 
 import essential.BaseDriverSetup;
@@ -87,16 +89,22 @@ public class ExpenseManagement {
         login("manager1@gmail.com", "Pass@123");
 
         Thread.sleep(1000);
-        driver.findElement(By.xpath("(//button[@type='button'])[1]")).click();
-        driver.findElement(By.xpath("(//h1[text()='Expense Management'])[1]")).click();
-        driver.findElement(By.xpath("(//h1[text()='Expense Dashboard'])[1]")).click();
-        driver.findElement(By.xpath("//a[text()='View Approvals']")).click();
-        driver.findElement(By.xpath("(//button[text()='View Details'])[last()]")).click();
 
-        driver.findElement(By.xpath("(//button[text()='Expense Items'])[1]")).click();
-        driver.findElement(By.xpath("(//button[text()='Approve'])[1]")).click();
-        driver.findElement(By.xpath("//textarea[@placeholder='Enter reason...']")).sendKeys("Manager approval");
-        driver.findElement(By.xpath("//button[text()='Submit']")).click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//button[@type='button'])[1]"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//h1[text()='Expense Management'])[1]"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//h1[text()='Expense Dashboard'])[1]"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[text()='View Approvals']"))).click();
+
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//button[text()='View Details'])[last()]"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//button[text()='Expense Items'])[1]"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//button[text()='Approve'])[1]"))).click();
+
+        WebElement reasonBox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//textarea[@placeholder='Enter reason...']")));
+        reasonBox.sendKeys("Manager approval");
+
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='Submit']"))).click();
     }
 
     private void superAdminFinalApproval() throws InterruptedException {
