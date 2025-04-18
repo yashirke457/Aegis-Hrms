@@ -4,7 +4,6 @@ import java.awt.AWTException;
 //import java.awt.Robot;
 //import java.awt.event.KeyEvent;
 import java.time.Duration;
-
 import org.openqa.selenium.*;
 import org.testng.annotations.*;
 
@@ -89,8 +88,27 @@ public class ExpenseManagement {
 
         Thread.sleep(1000);
         driver.findElement(By.xpath("(//*[local-name()='svg' and @data-testid='NotificationsIcon'])")).click();
+        
+		WebElement expenseTab = driver.findElement(By.xpath("//span[text()='Expense Management']"));
+		if (expenseTab.isDisplayed()) {
+			expenseTab.click();
+			System.out.println("✅ 'Expense Management' tab clicked directly.");
+		} else {
+			WebElement arrowButton = driver
+					.findElement(By.xpath("//*[local-name()='svg' and @data-testid='KeyboardArrowRightIcon']"));
+			if (arrowButton.isDisplayed()) {
+				arrowButton.click();
+				Thread.sleep(1000); // Wait for scroll animation
+				if (expenseTab.isDisplayed()) {
+					expenseTab.click();
+					System.out.println("✅ 'Expense Management' tab found after scrolling and clicked.");
+				}
+			} else {
+				System.out.println("Arrow button not found");
+			}
+		}
 //        driver.findElement(By.xpath("(//*[local-name()='svg' and @data-testid='KeyboardArrowRightIcon'])")).click();
-        driver.findElement(By.xpath("//span[text()='Expense Management']")).click();
+//        driver.findElement(By.xpath("//span[text()='Expense Management']")).click();
         driver.findElement(By.xpath("(//div[@class='flex items-center gap-3'])[1]")).click();
 
         driver.findElement(By.xpath("(//button[@type='button'])[1]")).click();
