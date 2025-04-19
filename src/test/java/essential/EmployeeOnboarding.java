@@ -21,7 +21,7 @@ public class EmployeeOnboarding {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driver.get("https://app.aegishrms.com");
         System.out.println("=========================================================");
-        System.out.println("EMPLOYEE ONBOARDING");
+        System.out.println("▶️ EMPLOYEE ONBOARDING");
     }
 
     @Test

@@ -115,6 +115,7 @@ public class ExpenseManagement {
         driver.findElement(By.linkText("View Approvals")).click();
         Thread.sleep(2000);
         driver.findElement(By.xpath("(//button[text()='View Details'])[last()]")).click();
+        Thread.sleep(2000);
         driver.findElement(By.xpath("//button[text()='Expense Items']")).click();
         driver.findElement(By.xpath("//button[text()='Final Approve']")).click();
         Thread.sleep(2000);

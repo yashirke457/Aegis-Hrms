@@ -20,7 +20,7 @@ public class AddDepartment {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         driver.get("https://app.aegishrms.com");
         System.out.println("=========================================================");
-        System.out.println("ADD DEPARTMENT AND DELETE DEPARTMENT");
+        System.out.println("▶️ ADD DEPARTMENT AND DELETE DEPARTMENT");
     }
 
     @Test
