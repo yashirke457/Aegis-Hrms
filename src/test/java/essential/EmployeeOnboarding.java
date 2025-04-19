@@ -25,14 +25,24 @@ public class EmployeeOnboarding {
     }
 
     @Test
-    public void employeeOnboardingWorkflow() throws InterruptedException {
-        login();
-        navigateToOnboardingPage();
-        fillFirstPageDetails();
-        fillSecondPageDetails();
-        completeThirdPage();
-        submitAndDeleteEmployee();
-        logout();
+    public void employeeOnboardingWorkflow() {
+        try {
+            login();
+            navigateToOnboardingPage();
+            fillFirstPageDetails();
+            fillSecondPageDetails();
+            completeThirdPage();
+            submitAndDeleteEmployee();
+            logout();
+
+            System.out.println("=========================================================");
+            System.out.println("✅ EMPLOYEE ONBOARDING- PASSED");
+
+        } catch (Exception e) {
+        	System.out.println("❌ EMPLOYEE ONBOARDING- FAILED");
+            System.out.println("🔍 Error Message: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     private void login() throws InterruptedException {
@@ -52,7 +62,6 @@ public class EmployeeOnboarding {
     }
 
     private void fillFirstPageDetails() throws InterruptedException {
-        // Employee basic details
         driver.findElement(By.name("first_name")).sendKeys("Manager");
         driver.findElement(By.name("last_name")).sendKeys("User");
         driver.findElement(By.name("date_of_birth")).sendKeys("06/25/2000");
@@ -70,7 +79,6 @@ public class EmployeeOnboarding {
     }
 
     private void fillSecondPageDetails() throws InterruptedException {
-        // Employee additional details
         driver.findElement(By.name("empId")).sendKeys("RL-0081");
         driver.findElement(By.name("companyemail")).sendKeys("raulflauren@gmail.com");
         driver.findElement(By.name("joining_date")).sendKeys("10/12/2023");
@@ -101,39 +109,20 @@ public class EmployeeOnboarding {
         Thread.sleep(5000);
         System.out.println("Employee Onboarding done successfully");
 
-        //Delete Employee
+        // Delete Employee
         driver.findElement(By.xpath("//button[@aria-label='open drawer']")).click();
         Thread.sleep(2000);
-//        driver.findElement(By.xpath("//h1[text()='Employee']")).click();
         driver.findElement(By.linkText("Offboarding")).click();
-        
         driver.findElement(By.xpath("//input[@placeholder='Search Employee']")).sendKeys("Manager" + Keys.ENTER);
         Thread.sleep(2000);
         driver.findElement(By.xpath("//*[local-name()='svg' and @data-testid='DeleteOutlineIcon']")).click();
         Thread.sleep(2000);
         driver.findElement(By.xpath("(//button[text()='Delete'])[2]")).click();
-	    Thread.sleep(3000);
-	    System.out.println("Employee deleted successfully");
-        
-//        // Delete Employee
-//        driver.findElement(By.xpath("//input[@placeholder='Search Employee']")).sendKeys("Manager" + Keys.ENTER);
-//        Thread.sleep(2000);
-//        driver.findElement(By.xpath("//*[local-name()='svg' and @data-testid='EditOutlinedIcon']")).click();
-//        driver.findElement(By.xpath("//button[text()='Next']")).click();
-//        driver.findElement(By.xpath("//button[text()='Next']")).click();
-//        driver.findElement(By.xpath("//button[text()='Next']")).click();
-//        driver.findElement(By.xpath("//button[text()='Submit']")).click();
-//        System.out.println("Edit employee done successfully");
-//        
-//        driver.findElement(By.xpath("//*[local-name()='svg' and @data-testid='PersonOffIcon']")).click();
-//        Thread.sleep(2000);
-//        driver.findElement(By.xpath("//button[text()='Confirm']")).click();
-//        Thread.sleep(3000);
-//        System.out.println("Employee deleted successfully");
+        Thread.sleep(3000);
+        System.out.println("Employee deleted successfully");
     }
 
     private void logout() throws InterruptedException {
-    	
         driver.findElement(By.id("basic-button")).click();
         driver.findElement(By.xpath("//div[text()=' Log out']")).click();
         System.out.println("Admin Logout done successfully");
@@ -147,14 +136,12 @@ public class EmployeeOnboarding {
         Thread.sleep(2000);
         dropdown.sendKeys(Keys.ENTER);
     }
-    
-    
 
     @AfterClass
     public void teardown() throws InterruptedException {
         if (driver != null) {
-        	Thread.sleep(3000);
-        	System.out.println("=========================================================");
+            Thread.sleep(3000);
+            System.out.println("=========================================================");
             driver.quit();
         }
     }

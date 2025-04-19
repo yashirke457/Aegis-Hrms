@@ -2,24 +2,24 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-04-18T18:03:11 IST" name="Default suite" finished-at="2025-04-18T18:04:51 IST" duration-ms="100264">
+  <suite started-at="2025-04-19T17:43:17 IST" name="Default suite" finished-at="2025-04-19T17:44:57 IST" duration-ms="99292">
     <groups>
     </groups>
-    <test started-at="2025-04-18T18:03:11 IST" name="Default test" finished-at="2025-04-18T18:04:51 IST" duration-ms="100264">
-      <class name="enterprise.ExpenseWorkflow">
-        <test-method is-config="true" signature="setup()[pri:0, instance:enterprise.ExpenseWorkflow@591e58fa]" started-at="2025-04-18T18:03:11 IST" name="setup" finished-at="2025-04-18T18:03:52 IST" duration-ms="41429" status="PASS">
+    <test started-at="2025-04-19T17:43:17 IST" name="Default test" finished-at="2025-04-19T17:44:57 IST" duration-ms="99292">
+      <class name="essential.LoginLogout">
+        <test-method is-config="true" signature="setup()[pri:0, instance:essential.LoginLogout@38425407]" started-at="2025-04-19T17:43:17 IST" name="setup" finished-at="2025-04-19T17:44:37 IST" duration-ms="79807" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="expenseworkflow()[pri:0, instance:enterprise.ExpenseWorkflow@591e58fa]" started-at="2025-04-18T18:03:52 IST" name="expenseworkflow" finished-at="2025-04-18T18:04:48 IST" duration-ms="55417" status="PASS">
+        <test-method signature="adminLoginLogout()[pri:0, instance:essential.LoginLogout@38425407]" started-at="2025-04-19T17:44:37 IST" name="adminLoginLogout" finished-at="2025-04-19T17:44:54 IST" duration-ms="16249" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- expenseworkflow -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:enterprise.ExpenseWorkflow@591e58fa]" started-at="2025-04-18T18:04:48 IST" name="teardown" finished-at="2025-04-18T18:04:51 IST" duration-ms="3339" status="PASS">
+        </test-method> <!-- adminLoginLogout -->
+        <test-method is-config="true" signature="teardown()[pri:0, instance:essential.LoginLogout@38425407]" started-at="2025-04-19T17:44:54 IST" name="teardown" finished-at="2025-04-19T17:44:57 IST" duration-ms="3175" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->
-      </class> <!-- enterprise.ExpenseWorkflow -->
+      </class> <!-- essential.LoginLogout -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

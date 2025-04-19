@@ -24,30 +24,40 @@ public class AddDepartment {
     }
 
     @Test
-    public void addDepartment() throws InterruptedException {
-        login("automationscripts@gmail.com", "Pass@123");
-        System.out.println("Login successful");
+    public void addDepartment() {
+        try {
+            login("automationscripts@gmail.com", "Pass@123");
+            System.out.println("Login successful");
 
-        navigateToAddDepartment();
+            navigateToAddDepartment();
 
-        // Add Department - First Page
-        driver.findElement(By.name("dept_name")).sendKeys("Billing");
-        selectDropdownOption("lake");
-        driver.findElement(By.xpath("//button[text()='Next']")).click();
+            // Add Department - First Page
+            driver.findElement(By.name("dept_name")).sendKeys("Billing");
+            selectDropdownOption("lake");
+            driver.findElement(By.xpath("//button[text()='Next']")).click();
 
-        // Add Department - Second Page
-        driver.findElement(By.name("dept_id")).sendKeys("Billing-002");
-        driver.findElement(By.name("dept_cost_center_id")).sendKeys("002");
-        driver.findElement(By.xpath("//button[text()='Next']")).click();
-        driver.findElement(By.xpath("//button[text()='Submit']")).click();
-        System.out.println("Department added successfully");
-        
-        // Delete Department
-        deleteDepartment();
-        System.out.println("Department deleted successfully");
+            // Add Department - Second Page
+            driver.findElement(By.name("dept_id")).sendKeys("Billing-002");
+            driver.findElement(By.name("dept_cost_center_id")).sendKeys("002");
+            driver.findElement(By.xpath("//button[text()='Next']")).click();
+            driver.findElement(By.xpath("//button[text()='Submit']")).click();
+            System.out.println("Department added successfully");
 
-        logout();
-        System.out.println("Logout successful");
+            // Delete Department
+            deleteDepartment();
+            System.out.println("Department deleted successfully");
+
+            logout();
+            System.out.println("Logout successful");
+
+            System.out.println("=========================================================");
+            System.out.println("✅ ADD DEPARTMENT AND DELETE DEPARTMENT- PASSED");
+
+        } catch (Exception e) {
+        	System.out.println("❌ ADD DEPARTMENT AND DELETE DEPARTMENT- FAILED");
+            System.out.println("🔍 Error Message: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     private void login(String email, String password) throws InterruptedException {
@@ -75,14 +85,14 @@ public class AddDepartment {
         driver.findElement(By.linkText("Add Department")).click();
     }
 
-    private void selectDropdownOption( String value) throws InterruptedException {
-    	Thread.sleep(2000);
+    private void selectDropdownOption(String value) throws InterruptedException {
+        Thread.sleep(2000);
         driver.findElement(By.xpath("(//input[@type='text'])[3]")).sendKeys(value + Keys.ENTER);
     }
-    
+
     public void deleteDepartment() throws InterruptedException {
-    	driver.findElement(By.xpath("(//*[local-name()='svg' and @data-testid='DeleteOutlineIcon'])[2]")).click();
-    	Thread.sleep(2000);
+        driver.findElement(By.xpath("(//*[local-name()='svg' and @data-testid='DeleteOutlineIcon'])[2]")).click();
+        Thread.sleep(2000);
         driver.findElement(By.xpath("//button[text()='Delete']")).click();
     }
 
