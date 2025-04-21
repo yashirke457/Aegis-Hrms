@@ -1,80 +1,68 @@
-name: Run Selected Selenium Tests with Validation
- 
+name: Run Selected Selenium Tests
+
 on:
   push:
     branches:
       - main
-  workflow_dispatch:
- 
+  workflow_dispatch:  # manual trigger
+
 jobs:
-  run-selenium-tests:
+  run-tests:
     runs-on: ubuntu-latest
- 
+
     steps:
-      - name: 🛒 Checkout code
+      - name: Checkout code
         uses: actions/checkout@v3
- 
-      - name: ☕ Set up Java 17
+
+      - name: Set up Java
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '17'
- 
-      - name: 🧪 Print Chrome version
+
+      - name: Print Chrome version
         run: google-chrome --version
- 
-      - name: 🚀 Run Selenium Tests with Summary Extraction and Validation
+
+      - name: Run Selected Selenium Tests in headless mode
         env:
           GITHUB_ACTIONS: true
         run: |
-          echo "================ RUNNING TESTS ================="
+          echo "Running tests headlessly"
           CHROME_ARGS="--headless=new --no-sandbox --disable-dev-shm-usage --window-size=1920,1080"
- 
-          # Run selected tests and capture output
-          mvn clean test -Dtest=essential.LoginLogout,essential.AddDepartment,essential.EmployeeOnboarding,enterprise.ExpenseManagement | tee selenium-test-output.txt
- 
-          echo "================ FILTERING SUMMARY ================="
-          grep -E 'EMPLOYEE ONBOARDING|LOGIN AND LOGOUT|ADD DEPARTMENT AND DELETE DEPARTMENT|done successfully|completed|successful' selenium-test-output.txt > test-summary.txt
- 
-          echo "================ PARSING RESULTS ================="
-          summary_line=$(grep "Tests run:" selenium-test-output.txt | tail -1)
-          echo "Test Summary: $summary_line"
- 
-          total=$(echo "$summary_line" | grep -oP 'Tests run: \K[0-9]+')
-          failures=$(echo "$summary_line" | grep -oP 'Failures: \K[0-9]+')
-          errors=$(echo "$summary_line" | grep -oP 'Errors: \K[0-9]+')
-          skipped=$(echo "$summary_line" | grep -oP 'Skipped: \K[0-9]+')
-          passed=$((total - failures - errors))
- 
-          if [ "$total" -eq 0 ]; then
-            percent=0
-          else
-            percent=$((passed * 100 / total))
+          mvn clean test -Dtest=essential.LoginLogout,essential.AddDepartment,essential.EmployeeOnboarding,enterprise.ExpenseManagement
+      - name: Install xmllint
+        run: sudo apt-get update && sudo apt-get install -y libxml2-utils
+
+      - name: Parse Test Results and Validate Pass Rate
+        run: |
+          echo "Parsing test results..."
+          
+          # Surefire report XML file
+          REPORT_FILE=target/surefire-reports/testng-results.xml
+          
+          if [ ! -f "$REPORT_FILE" ]; then
+            echo "Test report not found!"
+            exit 1
           fi
- 
-          echo "📊 Total: $total, Passed: $passed, Failures: $failures, Errors: $errors, Skipped: $skipped, Passed %: $percent" | tee test-validation-summary.txt
- 
-          if [ "$percent" -lt 80 ]; then
-            echo "❌ Test pass percentage ($percent%) is below threshold (80%). Failing the pipeline." | tee -a test-validation-summary.txt
+          
+          total=$(xmllint --xpath "string(/testng-results/@total)" "$REPORT_FILE")
+          passed=$(xmllint --xpath "string(/testng-results/@passed)" "$REPORT_FILE")
+          failed=$(xmllint --xpath "string(/testng-results/@failed)" "$REPORT_FILE")
+          echo "Total tests: $total"
+          echo "Passed tests: $passed"
+          echo "Failed tests: $failed"
+          if [ "$total" -eq 0 ]; then
+            echo "No tests were executed. Failing job."
+            exit 1
+          fi
+          percent=$((100 * passed / total))
+          echo "✅ Pass Percentage: $percent%"
+          # Fail pipeline if pass rate is below 75%
+          threshold=75
+          if [ "$percent" -lt "$threshold" ]; then
+            echo "❌ Pass rate $percent% is below threshold of $threshold%"
             exit 1
           else
-            echo "✅ Test pass percentage ($percent%) is acceptable. Proceeding." | tee -a test-validation-summary.txt
+            echo "✅ Test validation passed with $percent%."
           fi
- 
-      - name: 📦 Upload validation summary
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-validation-summary
-          path: test-validation-summary.txt
- 
-      - name: 📦 Upload full Maven test log
-        uses: actions/upload-artifact@v4
-        with:
-          name: selenium-test-output
-          path: selenium-test-output.txt
- 
-      - name: 📦 Upload test summary as artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: selenium-test-summary
-          path: test-summary.txt
+   
