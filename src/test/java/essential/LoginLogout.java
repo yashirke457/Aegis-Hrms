@@ -3,9 +3,11 @@ package essential;
 import java.time.Duration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
 
 public class LoginLogout {
 
@@ -40,8 +42,9 @@ public class LoginLogout {
 
         } catch (Exception e) {
             System.out.println("❌ LOGIN AND LOGOUT- FAILED");
-            System.out.println("🔍 Error Message: " + e.getMessage());
+//            System.out.println("🔍 Error Message: " + e.getMessage());
             e.printStackTrace();  // For detailed stack trace
+            Assert.fail("Test failed due to exception: " + e.getMessage());
         }
     }
 
