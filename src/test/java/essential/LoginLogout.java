@@ -25,7 +25,7 @@ public class LoginLogout {
     public void adminLoginLogout() {
         try {
             login("automationscripts@gmail.com", "Pass@123");
-            System.out.println("✅ Admin Login done successfully");
+            System.out.println("Admin Login done successfully");
 
             // Navigate to Organisation
             driver.findElement(By.xpath("//button[text()='Go To Organisation']")).click();
