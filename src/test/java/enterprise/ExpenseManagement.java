@@ -29,7 +29,7 @@ public class ExpenseManagement {
     @Test
     public void expenseworkflow() {
         try {
-            login("qatest@gmail.com", "Pass@123");
+            login("qatest@gmail.com", "Pass@12");
             createExpense();
             login("manager1@gmail.com", "Pass@123");
             managerApproval();
