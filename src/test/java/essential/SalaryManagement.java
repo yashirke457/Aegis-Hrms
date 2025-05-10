@@ -31,8 +31,8 @@ public class SalaryManagement {
 
         navigateToSalaryManagement();
 
-        manageSalary("employee", "15000", "0", "0", "1000", "0", "0", "0", "300");
-        System.out.println("Salary management completed successfully");
+//        manageSalary("employee", "15000", "0", "0", "1000", "0", "0", "0", "300");
+//        System.out.println("Salary management completed successfully");
 
         calculateSalary();
         System.out.println("Salary calculated and PDF downloaded successfully");
@@ -65,22 +65,23 @@ public class SalaryManagement {
         driver.findElement(By.xpath("//h1[text()='Salary Management']")).click();
     }
 
-    private void manageSalary(String employeeName, String basic, String hra, String conveyance, String specialAllowance, String medical, String lta, String bonus, String deductions) throws InterruptedException {
-        driver.findElement(By.xpath("//input[@placeholder='Search Employee']")).sendKeys(employeeName + Keys.ENTER);
-        driver.findElement(By.xpath("//*[local-name()='svg' and @data-testid='MoreVertIcon']")).click();
-        driver.findElement(By.xpath("//li[text()='Manage Salary']")).click();
-
-        // Clear and update salary fields
-        driver.findElement(By.name("Basic")).sendKeys(Keys.CONTROL + "a");
-        driver.findElement(By.name("Basic")).sendKeys(Keys.BACK_SPACE);
-        driver.findElement(By.name("Basic")).sendKeys(basic + Keys.TAB + hra + Keys.TAB + conveyance + Keys.TAB + specialAllowance 
-                + Keys.TAB + medical + Keys.TAB + lta + Keys.TAB + bonus + Keys.TAB + deductions);
-        Thread.sleep(3000);
-        driver.findElement(By.xpath("//button[text()='Submit']")).click();
-        Thread.sleep(2000);
-    }
+//    private void manageSalary(String employeeName, String basic, String hra, String conveyance, String specialAllowance, String medical, String lta, String bonus, String deductions) throws InterruptedException {
+//        driver.findElement(By.xpath("//input[@placeholder='Search Employee']")).sendKeys(employeeName + Keys.ENTER);
+//        driver.findElement(By.xpath("//*[local-name()='svg' and @data-testid='MoreVertIcon']")).click();
+//        driver.findElement(By.xpath("//li[text()='Manage Salary']")).click();
+//
+//        // Clear and update salary fields
+//        driver.findElement(By.name("Basic")).sendKeys(Keys.CONTROL + "a");
+//        driver.findElement(By.name("Basic")).sendKeys(Keys.BACK_SPACE);
+//        driver.findElement(By.name("Basic")).sendKeys(basic + Keys.TAB + hra + Keys.TAB + conveyance + Keys.TAB + specialAllowance 
+//                + Keys.TAB + medical + Keys.TAB + lta + Keys.TAB + bonus + Keys.TAB + deductions);
+//        Thread.sleep(3000);
+//        driver.findElement(By.xpath("//button[text()='Submit']")).click();
+//        Thread.sleep(2000);
+//    }
 
     private void calculateSalary() throws InterruptedException {
+    	driver.findElement(By.xpath("//input[@placeholder='Search Employee']")).sendKeys("employee" + Keys.ENTER);
         driver.findElement(By.xpath("//*[local-name()='svg' and @data-testid='MoreVertIcon']")).click();
         driver.findElement(By.xpath("//li[text()='Calculate Salary']")).click();
         Thread.sleep(3000);

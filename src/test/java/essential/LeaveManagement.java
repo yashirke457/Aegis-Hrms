@@ -3,7 +3,9 @@ package essential;
 import java.time.Duration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -14,8 +16,8 @@ public class LeaveManagement {
 
     @BeforeClass
     public void setup() {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
+    	driver=BaseDriverSetup.getDriver();
+    	driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driver.get("https://app.aegishrms.com");
         System.out.println("=========================================================");
@@ -24,62 +26,68 @@ public class LeaveManagement {
 
     @Test
     public void leaveManagement() throws InterruptedException {
+    	
+    	try {
         login("employee@raulflauren.com", "Pass@123");
-        System.out.println("Login successful");
-
         navigateToAttendanceCalendar();
-
         applyLeave("Casual leave");
-        System.out.println("Leave Request raised successfully");
-
         deleteLeaveRequest("Invalid");
-        System.out.println("Leave request deleted successfully");
-
         logout();
-        System.out.println("Logout successful");
+        
+        System.out.println("=========================================================");
+        System.out.println("âœ… LEAVE MANAGEMENT- PASSED");
+        
+    	}catch (Exception e) {
+    		System.out.println("â�Œ LEAVE MANAGEMENT- FAILED");
+            System.out.println("ðŸ”� Error Message: " + e.getMessage());
+            e.printStackTrace();
+		}
+        
     }
 
     private void login(String email, String password) throws InterruptedException {
         driver.findElement(By.name("email")).sendKeys(email);
         driver.findElement(By.name("password")).sendKeys(password);
-        Thread.sleep(2000); // Simulating delay
         driver.findElement(By.xpath("//button[text()='Login']")).click();
+        System.out.println("Login successful");
     }
 
     private void logout() throws InterruptedException {
-        Thread.sleep(3000);
         driver.findElement(By.id("basic-button")).click();
-        Thread.sleep(2000);
         driver.findElement(By.xpath("//div[text()=' Log out']")).click();
+        System.out.println("Logout successful");
     }
 
     private void navigateToAttendanceCalendar() throws InterruptedException {
+    	Thread.sleep(2000);
         driver.findElement(By.xpath("//button[@aria-label='open drawer']")).click();
-        Thread.sleep(2000);
         driver.findElement(By.xpath("//h1[text()='Attendance']")).click();
-        driver.findElement(By.xpath("//h1[text()='Manage Leaves']")).click();
+        driver.findElement(By.xpath("//h1[text()='Attendance Calender']")).click();
         Thread.sleep(2000);
     }
 
     private void applyLeave(String leaveType) throws InterruptedException {
-        driver.findElement(By.xpath("//h1[text()='07']/..")).click(); // Select a date
-        Thread.sleep(2000);
-        driver.findElement(By.xpath("//button[text()='Apply']")).click();
-        Thread.sleep(2000);
-        driver.findElement(By.xpath("//div[@aria-labelledby='demo-simple-select-label demo-simple-select']")).click();
-        Thread.sleep(2000);
-        driver.findElement(By.xpath("//div[text()='" + leaveType + "']")).click();
+    	WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(20));
+    	
+    	WebElement date = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h1[text()='07']/..")));
+    	date.click();
+    	WebElement applyButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[text()='Apply']")));
+    	applyButton.click();
+    	WebElement selectField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@aria-labelledby='demo-simple-select-label demo-simple-select']")));
+    	selectField.click();
+    	WebElement leaveTypeButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='" + leaveType + "']")));
+        leaveTypeButton.click();
+        
         driver.findElement(By.xpath("(//button[text()='Apply'])[2]")).click();
+        System.out.println("Leave Request raised successfully");
     }
 
     private void deleteLeaveRequest(String reason) throws InterruptedException {
-        Thread.sleep(3000);
         driver.findElement(By.xpath("//span[text()='Casual leave']/..")).click();
-        Thread.sleep(2000);
         driver.findElement(By.xpath("//button[text()='Delete']")).click();
-        Thread.sleep(2000);
         driver.findElement(By.name("deleteReason")).sendKeys(reason);
         driver.findElement(By.xpath("//button[text()='Delete']")).click();
+        System.out.println("Leave request deleted successfully");
     }
 
     @AfterClass

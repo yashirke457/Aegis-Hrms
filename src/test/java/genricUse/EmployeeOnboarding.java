@@ -24,7 +24,7 @@ public class EmployeeOnboarding {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driver.get("https://app.aegishrms.com");
         System.out.println("=========================================================");
-        System.out.println("▶️ EMPLOYEE ONBOARDING");
+        System.out.println("â–¶ï¸� EMPLOYEE ONBOARDING");
     }
 
     @Test
@@ -39,17 +39,17 @@ public class EmployeeOnboarding {
             logout();
 
             System.out.println("=========================================================");
-            System.out.println("✅ EMPLOYEE ONBOARDING- PASSED");
+            System.out.println("âœ… EMPLOYEE ONBOARDING- PASSED");
 
         } catch (Exception e) {
-        	System.out.println("❌ EMPLOYEE ONBOARDING- FAILED");
-            System.out.println("🔍 Error Message: " + e.getMessage());
+        	System.out.println("â�Œ EMPLOYEE ONBOARDING- FAILED");
+            System.out.println("ðŸ”� Error Message: " + e.getMessage());
             e.printStackTrace();
         }
     }
 
     private void login() throws InterruptedException {
-        driver.findElement(By.name("email")).sendKeys("noble@gmail.com");
+        driver.findElement(By.name("email")).sendKeys("demo@aegis.com");
         driver.findElement(By.name("password")).sendKeys("Pass@123");
         driver.findElement(By.xpath("//button[text()='Login']")).click();
         System.out.println("Admin Login done successfully");
@@ -57,7 +57,7 @@ public class EmployeeOnboarding {
 
     private void navigateToOnboardingPage() throws InterruptedException {
         driver.findElement(By.linkText("Go To Organisation")).click();
-        driver.findElement(By.xpath("(//button[text()='Setup'])[8]")).click();
+        driver.findElement(By.xpath("(//button[text()='Setup'])[6]")).click();
         driver.findElement(By.xpath("//button[@aria-label='open drawer']")).click();
         Thread.sleep(2000);
         driver.findElement(By.xpath("//h1[text()='Employee']")).click();
@@ -65,14 +65,14 @@ public class EmployeeOnboarding {
     }
 
     private void fillFirstPageDetails() throws InterruptedException {
-        driver.findElement(By.name("first_name")).sendKeys("Rahul");
-        driver.findElement(By.name("last_name")).sendKeys("User");
+        driver.findElement(By.name("first_name")).sendKeys("Employee");
+        driver.findElement(By.name("last_name")).sendKeys("Three");
         driver.findElement(By.name("date_of_birth")).sendKeys("06/25/2000");
-        driver.findElement(By.name("email")).sendKeys("rahul@training.com");
+        driver.findElement(By.name("email")).sendKeys("emp3@amt.com");
         driver.findElement(By.name("phone_number")).sendKeys("9568471758");
-        driver.findElement(By.name("address")).sendKeys("London, UK");
-        driver.findElement(By.xpath("//input[@value='male']")).click();
-        driver.findElement(By.name("adhar_card_number")).sendKeys("458796325412");
+        driver.findElement(By.name("address")).sendKeys("Pune");
+        driver.findElement(By.xpath("//input[@value='female']")).click();
+        driver.findElement(By.name("adhar_card_number")).sendKeys("111111111111");
         driver.findElement(By.name("pan_card_number")).sendKeys("NYSWG1426D");
         driver.findElement(By.name("bank_account_no")).sendKeys("827273");
         driver.findElement(By.name("citizenship")).sendKeys("UnitedKingdom");
@@ -82,18 +82,18 @@ public class EmployeeOnboarding {
     }
 
     private void fillSecondPageDetails() throws InterruptedException {
-        driver.findElement(By.name("empId")).sendKeys("TT-08283");
-        driver.findElement(By.name("companyemail")).sendKeys("training@test.com");
-        driver.findElement(By.name("joining_date")).sendKeys("10/12/2023");
+        driver.findElement(By.name("empId")).sendKeys("AMT-0020");
+        driver.findElement(By.name("companyemail")).sendKeys("asset@test.com");
+        driver.findElement(By.name("joining_date")).sendKeys("01/01/2025");
         selectDropdown("(//input[@role='combobox'])[2]", "it");
         driver.findElement(By.name("password")).sendKeys("Pass@123");
         driver.findElement(By.name("confirmPassword")).sendKeys("Pass@123");
-//        selectDropdown("(//input[@role='combobox'])[4]", "hr");
-        selectDropdown("(//input[@role='combobox'])[5]", "0001");
+//        selectDropdown("(//input[@role='combobox'])[4]", "accountant");
+        selectDropdown("(//input[@role='combobox'])[5]", "001");
         selectDropdown("(//input[@role='combobox'])[6]", "employee");
-        selectDropdown("(//input[@role='combobox'])[9]", "pune");
-        selectDropdown("(//input[@role='combobox'])[10]", "permanent");
-        selectDropdown("(//input[@role='combobox'])[11]", "full");
+        selectDropdown("(//input[@role='combobox'])[9]", "full");
+        selectDropdown("(//input[@role='combobox'])[10]", "full");
+        selectDropdown("(//input[@role='combobox'])[8]", "pune");
         driver.findElement(By.xpath("//button[text()='Next']")).click();
         Thread.sleep(3000);
         System.out.println("Second page completed");

@@ -33,6 +33,7 @@ public class Form16 {
             login("automationscripts@gmail.com", "Pass@123");
             formUpload();
             logout();
+            System.out.println("Super admin logout");
 
             System.out.println("=========================================================");
             System.out.println("✅ FORM 16 DOWNLOAD- PASSED");
@@ -66,6 +67,7 @@ public class Form16 {
         Thread.sleep(2000);
         driver.findElement(By.xpath("//button[text()='Upload Form 16']")).click();
         Thread.sleep(2000);
+        System.out.println("Form-16 uploaded successfully for TDS employee");
         
 //        //Download and View Form-16
 //        driver.findElement(By.xpath("//li[@aria-label='Button for downloading or view  form 16']")).click();
@@ -77,6 +79,7 @@ public class Form16 {
         driver.findElement(By.xpath("//button[text()='Delete Form 16']")).click();  
         driver.findElement(By.xpath("//button[text()='Delete']")).click();
         Thread.sleep(3000);
+        System.out.println("Form-16 deleted successfully for TDS employee");
         
     }
     
