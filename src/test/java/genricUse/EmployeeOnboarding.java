@@ -57,7 +57,7 @@ public class EmployeeOnboarding {
 
     private void navigateToOnboardingPage() throws InterruptedException {
         driver.findElement(By.linkText("Go To Organisation")).click();
-        driver.findElement(By.xpath("(//button[text()='Setup'])[6]")).click();
+        driver.findElement(By.xpath("(//button[text()='Setup'])[8]")).click();
         driver.findElement(By.xpath("//button[@aria-label='open drawer']")).click();
         Thread.sleep(2000);
         driver.findElement(By.xpath("//h1[text()='Employee']")).click();
@@ -66,9 +66,9 @@ public class EmployeeOnboarding {
 
     private void fillFirstPageDetails() throws InterruptedException {
         driver.findElement(By.name("first_name")).sendKeys("Employee");
-        driver.findElement(By.name("last_name")).sendKeys("Three");
+        driver.findElement(By.name("last_name")).sendKeys("five");
         driver.findElement(By.name("date_of_birth")).sendKeys("06/25/2000");
-        driver.findElement(By.name("email")).sendKeys("emp3@amt.com");
+        driver.findElement(By.name("email")).sendKeys("hemp5@ast.com");
         driver.findElement(By.name("phone_number")).sendKeys("9568471758");
         driver.findElement(By.name("address")).sendKeys("Pune");
         driver.findElement(By.xpath("//input[@value='female']")).click();
@@ -82,13 +82,13 @@ public class EmployeeOnboarding {
     }
 
     private void fillSecondPageDetails() throws InterruptedException {
-        driver.findElement(By.name("empId")).sendKeys("AMT-0020");
-        driver.findElement(By.name("companyemail")).sendKeys("asset@test.com");
+        driver.findElement(By.name("empId")).sendKeys("AST-0033");
+        driver.findElement(By.name("companyemail")).sendKeys("annualsal@test.com");
         driver.findElement(By.name("joining_date")).sendKeys("01/01/2025");
         selectDropdown("(//input[@role='combobox'])[2]", "it");
         driver.findElement(By.name("password")).sendKeys("Pass@123");
         driver.findElement(By.name("confirmPassword")).sendKeys("Pass@123");
-//        selectDropdown("(//input[@role='combobox'])[4]", "accountant");
+//        selectDropdown("(//input[@role='combobox'])[4]", "hr");
         selectDropdown("(//input[@role='combobox'])[5]", "001");
         selectDropdown("(//input[@role='combobox'])[6]", "employee");
         selectDropdown("(//input[@role='combobox'])[9]", "full");

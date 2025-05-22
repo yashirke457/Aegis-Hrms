@@ -21,36 +21,36 @@ public class ExpenseManagement {
         driver = BaseDriverSetup.getDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(25));
-        driver.get("https://qa.aegishrms.com/sign-in");
+        driver.get("https://app.aegishrms.com/sign-in");
         System.out.println("=========================================================");
-        System.out.println("▶️ EXPENSE MANAGEMENT WORKFLOW");
+        System.out.println("â–¶ï¸� EXPENSE MANAGEMENT WORKFLOW");
     }
 
     @Test
     public void expenseworkflow() {
         try {
-            login("qatest@gmail.com", "Pass@123");
+            login("employee@uspolo.com", "Pass@123");
             createExpense();
-            login("manager1@gmail.com", "Pass@123");
+            login("manager@uspolo.com", "Pass@123");
             managerApproval();
-            login("qatest@gmail.com", "Pass@123");
+            login("automationscripts@gmail.com", "Pass@123");
             superAdminApproval();
 
             System.out.println("=========================================================");
-            System.out.println("✅ EXPENSE MANAGEMENT WORKFLOW- PASSED");
+            System.out.println("âœ… EXPENSE MANAGEMENT WORKFLOW- PASSED");
             
         } catch (Exception e) {
-        	System.out.println("❌ EXPENSE MANAGEMENT WORKFLOW- FAILED");
-            System.out.println("🔍 Error Message: " + e.getMessage());
+        	System.out.println("â�Œ EXPENSE MANAGEMENT WORKFLOW- FAILED");
+            System.out.println("ðŸ”� Error Message: " + e.getMessage());
             e.printStackTrace();
         }
     }
 
     public void createExpense() throws InterruptedException {
-        System.out.println("Super admin login");
+        System.out.println("Employee admin login");
         Thread.sleep(2000);
-        driver.findElement(By.linkText("Go To Organisation")).click();
-        driver.findElement(By.xpath("(//button[text()='Setup'])[1]")).click();
+//        driver.findElement(By.linkText("Go To Organisation")).click();
+//        driver.findElement(By.xpath("(//button[text()='Setup'])[1]")).click();
         driver.findElement(By.xpath("//button[@aria-label='open drawer']")).click();
         Thread.sleep(2000);
         driver.findElement(By.xpath("(//h1[text()='Expense Management'])[1]")).click();
@@ -113,7 +113,7 @@ public class ExpenseManagement {
         System.out.println("Super admin login");
         Thread.sleep(2000);
         driver.findElement(By.linkText("Go To Organisation")).click();
-        driver.findElement(By.xpath("(//button[text()='Setup'])[1]")).click();
+        driver.findElement(By.xpath("(//button[text()='Setup'])[4]")).click();
         driver.findElement(By.xpath("//button[@aria-label='open drawer']")).click();
         Thread.sleep(2000);
         driver.findElement(By.xpath("(//h1[text()='Expense Management'])[1]")).click();

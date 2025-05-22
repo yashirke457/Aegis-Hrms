@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//src/test/java/enterprise/ExpenseManagement.java=UTF-8
 encoding//src/test/java/essential/BaseDriverSetup.java=UTF-8
 encoding//src/test/java/essential/CreateOrgSetup.java=UTF-8
 encoding//src/test/java/essential/LeaveManagement.java=UTF-8
