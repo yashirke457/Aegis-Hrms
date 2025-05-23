@@ -21,7 +21,7 @@ public class EmployeeOnboarding {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driver.get("https://app.aegishrms.com");
         System.out.println("=========================================================");
-        System.out.println("▶️ EMPLOYEE ONBOARDING");
+        System.out.println("â–¶ï¸� EMPLOYEE ONBOARDING");
     }
 
     @Test
@@ -36,11 +36,11 @@ public class EmployeeOnboarding {
             logout();
 
             System.out.println("=========================================================");
-            System.out.println("✅ EMPLOYEE ONBOARDING- PASSED");
+            System.out.println("âœ… EMPLOYEE ONBOARDING- PASSED");
 
         } catch (Exception e) {
-        	System.out.println("❌ EMPLOYEE ONBOARDING- FAILED");
-            System.out.println("🔍 Error Message: " + e.getMessage());
+        	System.out.println("â�Œ EMPLOYEE ONBOARDING- FAILED");
+            System.out.println("ðŸ”� Error Message: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -88,9 +88,9 @@ public class EmployeeOnboarding {
         selectDropdown("(//input[@role='combobox'])[4]", "manager");
         selectDropdown("(//input[@role='combobox'])[5]", "001");
         selectDropdown("(//input[@role='combobox'])[6]", "employee");
-        selectDropdown("(//input[@role='combobox'])[9]", "lake");
+        selectDropdown("(//input[@role='combobox'])[8]", "lake");
+        selectDropdown("(//input[@role='combobox'])[9]", "full");
         selectDropdown("(//input[@role='combobox'])[10]", "full");
-        selectDropdown("(//input[@role='combobox'])[11]", "full");
         driver.findElement(By.xpath("//button[text()='Next']")).click();
         Thread.sleep(3000);
         System.out.println("Second page completed");

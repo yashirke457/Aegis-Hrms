@@ -30,10 +30,6 @@ public class SalaryManagement {
         System.out.println("Login successful");
 
         navigateToSalaryManagement();
-
-//        manageSalary("employee", "15000", "0", "0", "1000", "0", "0", "0", "300");
-//        System.out.println("Salary management completed successfully");
-
         calculateSalary();
         System.out.println("Salary calculated and PDF downloaded successfully");
 
