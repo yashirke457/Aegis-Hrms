@@ -28,4 +28,4 @@ jobs:
           GITHUB_ACTIONS: true
         run: |
           echo "Running tests headlessly"
-          mvn clean test -Dtest=essential.LoginLogout,essential.AddDepartment,essential.EmployeeOnboarding,enterprise.ExpenseManagement
+          mvn clean test -Dtest=essential.xml
